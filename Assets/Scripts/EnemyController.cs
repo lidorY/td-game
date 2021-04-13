@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
 
 
     public float speed;
+    public NavMeshAgent agent;
     private Vector3 Destination;
     private Vector3 Origin;
     private float DistanceFromDest;
@@ -14,11 +16,13 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destination = new Vector3(0, 0.5f, 0);
-        DistanceFromDest = Vector3.Distance(transform.localPosition, Destination);
-        Origin = transform.localPosition;
+        agent.SetDestination(Destination);
+        //Destination = new Vector3(0, 0.5f, 0);
+        //DistanceFromDest = Vector3.Distance(transform.localPosition, Destination);
+        //Origin = transform.localPosition;
 
-        StartCoroutine(moveObject());
+        //StartCoroutine(moveObject());
+
     }
 
     // Update is called once per frame
@@ -27,16 +31,16 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    public IEnumerator moveObject()
-	{
-        float toatlTime = DistanceFromDest / speed;
-        float currentTime = 0f;
-        while(Vector3.Distance(transform.localPosition, Destination) > 0)
-		{
-            currentTime += Time.deltaTime;
-            transform.localPosition = Vector3.Lerp(Origin, Destination, currentTime/ toatlTime);
-            yield return null;
-		}
-        Destroy(gameObject);
-	}
+ //   public IEnumerator moveObject()
+	//{
+ //       float toatlTime = DistanceFromDest / speed;
+ //       float currentTime = 0f;
+ //       while(Vector3.Distance(transform.localPosition, Destination) > 0)
+	//	{
+ //           currentTime += Time.deltaTime;
+ //           transform.localPosition = Vector3.Lerp(Origin, Destination, currentTime/ toatlTime);
+ //           yield return null;
+	//	}
+ //       Destroy(gameObject);
+	//}
 }
