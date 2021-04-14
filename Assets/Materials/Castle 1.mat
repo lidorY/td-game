@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tower
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Castle 1
+  m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ShaderKeywords: DR_CEL_EXTRA_ON _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY
     _UNITYSHADOWMODE_MULTIPLY
   m_LightmapFlags: 4
@@ -86,7 +86,7 @@ Material:
     - _FlatSpecularEdgeSmoothness: 0
     - _FlatSpecularSize: 0.1
     - _Flatness: 1
-    - _FlatnessExtra: 0.921
+    - _FlatnessExtra: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
@@ -105,10 +105,10 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _RimEnabled: 0
-    - _SelfShadingSize: 0.296
-    - _SelfShadingSizeExtra: 0.343
+    - _SelfShadingSize: 0.5
+    - _SelfShadingSizeExtra: 0.5
     - _ShadowEdgeSize: 0.05
-    - _ShadowEdgeSizeExtra: 0.037
+    - _ShadowEdgeSizeExtra: 0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
     - _SpecularHighlights: 1
@@ -123,10 +123,10 @@ Material:
     - _VertexColorsEnabled: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.19215688, g: 0.23529413, b: 0.43921572, a: 1}
-    - _ColorDim: {r: 0.6509434, g: 0.4692821, b: 0.27429685, a: 1}
+    - _Color: {r: 0.35667372, g: 0.3857053, b: 0.39400002, a: 1}
+    - _ColorDim: {r: 0.2621336, g: 0.39808056, b: 0.4433962, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _ColorDimExtra: {r: 0.4245283, g: 0.2801435, b: 0.07876466, a: 1}
+    - _ColorDimExtra: {r: 0.22325, g: 0.231475, b: 0.235, a: 1}
     - _ColorDimSteps: {r: 0.35667372, g: 0.3857053, b: 0.39400002, a: 1}
     - _ColorGradient: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

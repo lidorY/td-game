@@ -9,9 +9,13 @@ public class EnemyController : MonoBehaviour
 
     public float speed;
     public NavMeshAgent agent;
+    public Animator animator;
+    
     private Vector3 Destination;
     private Vector3 Origin;
     private float DistanceFromDest;
+
+
 
     // Start is called before the first frame update
     void Start()
