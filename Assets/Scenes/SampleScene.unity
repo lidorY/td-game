@@ -844,6 +844,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRef: {fileID: 4274285055804658, guid: 84493eaa65d75074ca2c6e2d8a90ff9a, type: 3}
+  attakTarget: {fileID: 1856659664}
+  positionsNum: 20
+  radiusFromTarget: 2
   spawnDistance: 12
   timeout: 1
 --- !u!4 &1439275608
@@ -860,3 +863,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1856659664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 27f50b57a7818674387f10711ac0b6d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 234935301}
+  m_PrefabAsset: {fileID: 0}

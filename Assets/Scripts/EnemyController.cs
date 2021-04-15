@@ -7,44 +7,58 @@ public class EnemyController : MonoBehaviour
 {
 
 
-    public float speed;
     public NavMeshAgent agent;
     public Animator animator;
+
+    private EnemySpawner spawnerRef;
     
+    private Vector3 attakTarget;
     private Vector3 Destination;
-    private Vector3 Origin;
-    private float DistanceFromDest;
+    private bool reachedDestintaion;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        reachedDestintaion = false;
+        attakTarget = GameObject.Find("Castle").transform.position;
+        spawnerRef = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        Destination = spawnerRef.AttackSlot();
         agent.SetDestination(Destination);
-        //Destination = new Vector3(0, 0.5f, 0);
-        //DistanceFromDest = Vector3.Distance(transform.localPosition, Destination);
-        //Origin = transform.localPosition;
-
-        //StartCoroutine(moveObject());
-
     }
+
+    
 
     // Update is called once per frame
     void Update()
     {
-        
+		if (!reachedDestintaion)
+		{
+            // Running animation
+            animator.SetBool("Run Forward", true);
+		}
+
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    // Face target direction
+                    Vector3 dir = attakTarget - transform.position;
+                    dir.y = 0;//This allows the object to only rotate on its y axis
+                    Quaternion rot = Quaternion.LookRotation(dir);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, rot, 3 * Time.deltaTime);
+                    animator.SetBool("Run Forward", false);
+                    animator.SetTrigger("Attack 01");
+                    agent.isStopped = true;
+                    reachedDestintaion = true;
+
+                }
+            }
+        }
+
     }
 
- //   public IEnumerator moveObject()
-	//{
- //       float toatlTime = DistanceFromDest / speed;
- //       float currentTime = 0f;
- //       while(Vector3.Distance(transform.localPosition, Destination) > 0)
-	//	{
- //           currentTime += Time.deltaTime;
- //           transform.localPosition = Vector3.Lerp(Origin, Destination, currentTime/ toatlTime);
- //           yield return null;
-	//	}
- //       Destroy(gameObject);
-	//}
 }

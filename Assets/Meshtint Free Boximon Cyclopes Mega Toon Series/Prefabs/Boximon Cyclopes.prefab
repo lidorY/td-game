@@ -179,7 +179,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: ab49f3cef633f1d4c84f8c46ec6c0b74, type: 3}
   m_Controller: {fileID: 9100000, guid: cad4cd74f41924a4bbcbe916d2f9cb9b, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 1
+  m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -220,9 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0cf275a06075e14db01db2da48a0790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   agent: {fileID: 3496003362667851627}
-  animator: {fileID: 0}
+  animator: {fileID: 95782878299265946}
 --- !u!1 &1159647506406770
 GameObject:
   m_ObjectHideFlags: 0

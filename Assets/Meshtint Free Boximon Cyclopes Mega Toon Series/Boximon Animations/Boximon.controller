@@ -360,7 +360,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: Run Forward
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -721,4 +721,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: -60, y: 204, z: 0}
   m_ExitPosition: {x: -156, y: 384, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102377714096631568}
+  m_DefaultState: {fileID: 1102026630267558524}
