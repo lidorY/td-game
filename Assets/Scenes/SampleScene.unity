@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 27f50b57a7818674387f10711ac0b6d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 27f50b57a7818674387f10711ac0b6d1,
         type: 3}
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 880362448}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 963194227}
-  defense: {fileID: 4123685139927210060, guid: 0f0b3516f12623849911f25ac46f4622, type: 3}
+  defense: {fileID: 4939996705135754, guid: a425124410f363a43adb6788601cc3e0, type: 3}
 --- !u!1 &1304790930
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +861,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1856659664 stripped
 Transform:

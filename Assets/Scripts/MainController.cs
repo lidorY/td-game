@@ -22,7 +22,10 @@ public class MainController : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
 			{
-                Instantiate(defense, hit.point + Vector3.up * 2, defense.rotation);
+                if (hit.transform.tag == "Ground")
+                {
+                    Instantiate(defense, hit.point, defense.rotation);
+                }
 			}
 		}
     }
