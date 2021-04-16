@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3496003362667851627}
   animator: {fileID: 95782878299265946}
+  dead: 0
 --- !u!65 &-9099926605068695912
 BoxCollider:
   m_ObjectHideFlags: 0
