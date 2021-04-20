@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 95782878299265946}
   - component: {fileID: 3496003362667851627}
   - component: {fileID: 4991377450128292953}
-  - component: {fileID: -9099926605068695912}
+  - component: {fileID: 2618264881308160142}
   m_Layer: 0
   m_Name: Boximon Cyclopes
   m_TagString: Enemy
@@ -196,7 +196,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1111084942782338}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -224,7 +224,7 @@ MonoBehaviour:
   agent: {fileID: 3496003362667851627}
   animator: {fileID: 95782878299265946}
   dead: 0
---- !u!65 &-9099926605068695912
+--- !u!65 &2618264881308160142
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,8 +235,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1.1, z: 1.1}
-  m_Center: {x: 0, y: 0.7, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1159647506406770
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +718,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 641e51ebbef02464da661776af055548, type: 2}
+  - {fileID: 2100000, guid: 13896b90f57e8bb4f807d0e390cb3f8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -6,6 +6,7 @@ public class TurrentControl : MonoBehaviour
 {
     List<Transform> targets;
 
+    [SerializeField] private Transform Turrent;
     [SerializeField] private Transform Bullet;
     [SerializeField] private Transform GunEndpoint;
 
@@ -33,7 +34,7 @@ public class TurrentControl : MonoBehaviour
             {
 				if (!t) { continue; }
 				if (t.GetComponent<EnemyController>().dead) { continue; }
-                Vector3 dir = t.position - transform.position;
+                Vector3 dir = t.position - Turrent.position;
                 Quaternion rot = Quaternion.LookRotation(dir);
                 if (rot.eulerAngles.x <= 30)
                 {
@@ -49,7 +50,7 @@ public class TurrentControl : MonoBehaviour
                 targetRef = null;
                 return; 
             }
-            Vector3 dir = targetRef.position - transform.position;
+            Vector3 dir = targetRef.position - Turrent.position;
             Quaternion rot = Quaternion.LookRotation(dir);
             if (rot.eulerAngles.x > 30)
             {
@@ -58,7 +59,7 @@ public class TurrentControl : MonoBehaviour
 			else
 			{
                 // Face target direction
-                transform.localRotation = Quaternion.Lerp(transform.localRotation, rot, 5 * Time.deltaTime);
+                Turrent.rotation = Quaternion.Lerp(Turrent.localRotation, rot, 5 * Time.deltaTime);
 
                 if (timeCounter > timeout)
                 {
@@ -84,5 +85,11 @@ public class TurrentControl : MonoBehaviour
 	{
         targets.Remove(other.transform);
     }
+
+
+	public void SelfDestroy()
+	{
+        Destroy(gameObject);
+	}
 
 }

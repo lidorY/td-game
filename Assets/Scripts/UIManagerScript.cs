@@ -9,6 +9,12 @@ public class UIManagerScript : MonoBehaviour
 	{
         Application.LoadLevel(0);
 	}
+
+    public void Add()
+	{
+
+	}
+
     // Start is called before the first frame update
     void Start()
     {
