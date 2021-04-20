@@ -27,4 +27,10 @@ public class MenuControl : MonoBehaviour
         menu_active = !menu_active;
         ui.active = menu_active;
     }
+
+
+    public void SelfDestroy()
+	{
+        Destroy(gameObject);
+	}
 }

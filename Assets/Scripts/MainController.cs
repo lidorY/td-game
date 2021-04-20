@@ -20,7 +20,7 @@ public class MainController : MonoBehaviour
 		{
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit))
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity, int.MaxValue, QueryTriggerInteraction.Collide))
 			{
                 if (hit.transform.tag == "Ground")
                 {
