@@ -92,4 +92,9 @@ public class TurrentControl : MonoBehaviour
         Destroy(gameObject);
 	}
 
+
+	public void OnMouseDown()
+	{
+        print("Clicked on me!");
+	}
 }
