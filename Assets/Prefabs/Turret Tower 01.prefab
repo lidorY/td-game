@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8428561572900973029}
   m_Layer: 0
   m_Name: Turret Tower 01
-  m_TagString: Untagged
+  m_TagString: Placing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

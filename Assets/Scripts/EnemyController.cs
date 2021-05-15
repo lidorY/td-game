@@ -71,15 +71,33 @@ public class EnemyController : MonoBehaviour
         {
             if (collision.transform.tag == "Bullet")
             {
-                dead = true;
-                agent.isStopped = true;
-                animator.SetBool("Run Forward", false);
-                animator.SetTrigger("Take Damage");
-                animator.SetTrigger("Die");
-                StartCoroutine(waiter());
+                Die();
             }
         }
 	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+        if (!dead)
+        {
+            if (other.transform.tag == "Bullet")
+            {
+                Die();
+            }
+        }
+    }
+
+
+
+	private void Die()
+	{
+        dead = true;
+        agent.isStopped = true;
+        animator.SetBool("Run Forward", false);
+        animator.SetTrigger("Take Damage");
+        animator.SetTrigger("Die");
+        StartCoroutine(waiter());
+    }
     IEnumerator waiter()
     {
         //Wait for 4 seconds
