@@ -12,6 +12,8 @@ public class MainController : MonoBehaviour
 
 	public Transform decal;
 
+	public static List<Transform> placed;
+	public static bool active_placing = false;
 
 
 	public Transform laserBeam;
@@ -28,14 +30,24 @@ public class MainController : MonoBehaviour
 	public Material initMaterial;
 	public void CreateTurrent()
 	{
-		Transform tur = Instantiate(defense, new Vector3(-3.5f, 5, -4), defense.rotation);
-		Utils.SetLayerRecursively(tur.gameObject, 6);
-		tur.FindDeepChild("Turret").GetComponent<Renderer>().material = initMaterial;
-		tur.FindDeepChild("Tower").GetComponent<Renderer>().material = initMaterial;
+		if (!active_placing)
+		{
+			active_placing = true;
+			foreach (Transform g in placed)
+			{
+				g.FindDeepChild("Radius").gameObject.SetActive(true);
+			}
+			Transform tur = Instantiate(defense, new Vector3(-3.5f, 5, -4), defense.rotation);
+			Utils.SetLayerRecursively(tur.gameObject, 6);
+			tur.FindDeepChild("Turret").GetComponent<Renderer>().material = initMaterial;
+			tur.FindDeepChild("Tower").GetComponent<Renderer>().material = initMaterial;
+		}
+		
 	}
 
 	void Start()
     {
+		placed = new List<Transform>();
 		laserBeam.gameObject.SetActive(false);
 	}
 
@@ -82,11 +94,7 @@ public class MainController : MonoBehaviour
 
 						Transform decal_hit = Instantiate(decal, endPosition + (Vector3.up * 0.01f), Quaternion.identity);
 						StartCoroutine(WaitAndDestroy(decal_hit.gameObject, 2f));
-						//laserLineRenderer.SetPosition(0, start);
-						//laserLineRenderer.SetPosition(1, endPosition);
-						//laserLineRenderer.enabled = true;
 
-						//Transform tur = Instantiate(lightning, worldPosition, Quaternion.Euler(0, 0, 70));
 						StartCoroutine(WaitAndDestroy(0.1f));
 					}
 				}

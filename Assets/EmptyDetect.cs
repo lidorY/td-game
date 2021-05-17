@@ -18,13 +18,20 @@ public class EmptyDetect : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+
+	private void OnTriggerStay(Collider other)
     {
-        collided = true;
+        if (other.transform.tag != "Ground")
+        {
+            collided = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        collided = false;
+        if (other.transform.tag != "Ground")
+        {
+            collided = false;
+        }
     }
 }

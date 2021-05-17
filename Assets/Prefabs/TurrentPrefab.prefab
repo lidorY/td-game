@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 6246673741892258856}
+  radius: {fileID: 2355001074886732394}
 --- !u!1001 &5047598659723793759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,6 +162,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MenuControl, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7395483694818557749, guid: a425124410f363a43adb6788601cc3e0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395483694818557749, guid: a425124410f363a43adb6788601cc3e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689944656250892293, guid: a425124410f363a43adb6788601cc3e0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a425124410f363a43adb6788601cc3e0, type: 3}
 --- !u!4 &5052230478818314709 stripped
@@ -172,6 +188,12 @@ Transform:
 --- !u!1 &6246673741892258856 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1205848218499062135, guid: a425124410f363a43adb6788601cc3e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5047598659723793759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2355001074886732394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7395483694818557749, guid: a425124410f363a43adb6788601cc3e0,
     type: 3}
   m_PrefabInstance: {fileID: 5047598659723793759}
   m_PrefabAsset: {fileID: 0}

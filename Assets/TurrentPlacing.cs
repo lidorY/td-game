@@ -5,7 +5,9 @@ using UnityEngine;
 public class TurrentPlacing : MonoBehaviour
 {
 
+
     public Transform turrent;
+    public Transform pos_place;
     public Vector3 pos_offset;
 
     public float clickDelta = 0.35f;  // Max between two click to be considered a double click
@@ -19,6 +21,17 @@ public class TurrentPlacing : MonoBehaviour
     void Start()
     {
         prev_coll = true;
+
+        // Placing pos position
+        Vector3 dir = transform.position - Camera.main.ScreenToWorldPoint(Vector3.zero);
+        float t = (0 - transform.position.y) / dir.y;
+
+        pos_place.position = new Vector3(
+            transform.position.x + t * dir.x,
+            0,
+            transform.position.z + t * dir.z
+            );
+
     }
 
     // Update is called once per frame
@@ -28,9 +41,9 @@ public class TurrentPlacing : MonoBehaviour
         {
             click = false;
         }
-            if (transform.FindDeepChild("Tower").GetComponent<EmptyDetect>().collided != prev_coll)
+            if (transform.FindDeepChild("placingpos").GetComponent<EmptyDetect>().collided != prev_coll)
         {
-            prev_coll = transform.FindDeepChild("Tower").GetComponent<EmptyDetect>().collided;
+            prev_coll = transform.FindDeepChild("placingpos").GetComponent<EmptyDetect>().collided;
             if (prev_coll)
             {
                 transform.FindDeepChild("Turret").GetComponent<Renderer>().material = disable;
@@ -57,12 +70,20 @@ public class TurrentPlacing : MonoBehaviour
         if (click && Time.time <= (clickTime + clickDelta))
         {
             print("Double click!");
-            if (!transform.FindDeepChild("Tower").GetComponent<EmptyDetect>().collided)
+
+            if (!transform.FindDeepChild("placingpos").GetComponent<EmptyDetect>().collided)
             {
-                Instantiate(turrent, transform.position + pos_offset, Quaternion.identity);
+                Transform p = Instantiate(turrent, pos_place.position, Quaternion.identity);
+                foreach(Transform t in MainController.placed)
+				{
+                    t.FindDeepChild("Radius").gameObject.SetActive(false);
+                }
+                MainController.placed.Add(p);
+                MainController.active_placing = false;
                 Destroy(gameObject);
             }
-            //click = false;
+
+            
         }
         else
         {
@@ -72,6 +93,8 @@ public class TurrentPlacing : MonoBehaviour
 
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+     
     }
 
     private bool prev_coll;
@@ -85,6 +108,21 @@ public class TurrentPlacing : MonoBehaviour
         transform.localPosition = new Vector3(cursorPosition.x + y_offset,
             transform.position.y,
             cursorPosition.z + y_offset);
+
+
+
+        // Placing pos position
+        Vector3 dir =  transform.position - Camera.main.ScreenToWorldPoint(Vector3.zero);
+        float t = (0 - transform.position.y) / dir.y;
+
+        pos_place.position = new Vector3(
+            transform.position.x + t * dir.x,
+            0,
+            transform.position.z + t* dir.z
+            );
+
+
+
     }
 }
 
