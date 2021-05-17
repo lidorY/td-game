@@ -1332,7 +1332,7 @@ MonoBehaviour:
   positionsNum: 20
   radiusFromTarget: 2
   spawnDistance: 20
-  timeout: 100
+  timeout: 1
 --- !u!4 &1439275608
 Transform:
   m_ObjectHideFlags: 0
