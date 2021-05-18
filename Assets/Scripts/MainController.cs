@@ -47,6 +47,7 @@ public class MainController : MonoBehaviour
 
 	void Start()
     {
+		active_placing = false;
 		placed = new List<Transform>();
 		laserBeam.gameObject.SetActive(false);
 	}
