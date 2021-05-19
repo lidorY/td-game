@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0410fe38b49b443ab1dbde15004e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliders_count: 0
+  enemy_detection_radius: 2
   collided: 0
 --- !u!1 &6245384907050436063
 GameObject:

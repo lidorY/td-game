@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     private bool reachedDestintaion;
     public bool dead;
 
+    // TODO: race condition!!!
+    public EmptyDetect curr_collider;
 
     // Start is called before the first frame update
     void Start()
@@ -91,8 +93,12 @@ public class EnemyController : MonoBehaviour
 
 	private void Die()
 	{
+        Destroy(transform.GetComponent<BoxCollider>());
+        if (curr_collider != null) curr_collider.colliders_count--;
+
         dead = true;
         agent.isStopped = true;
+		
         animator.SetBool("Run Forward", false);
         animator.SetTrigger("Take Damage");
         animator.SetTrigger("Die");
