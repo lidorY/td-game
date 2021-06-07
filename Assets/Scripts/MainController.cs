@@ -16,8 +16,8 @@ public class MainController : MonoBehaviour
 	public static bool active_placing = false;
 
 
-	public Transform laserBeam;
-	public Vector3 laserBaemOffset;
+	//public Transform laserBeam;
+	//public Vector3 laserBaemOffset;
 
 	public LineRenderer laserLineRenderer;
 	public float laserWidth = 0.1f;
@@ -49,7 +49,7 @@ public class MainController : MonoBehaviour
     {
 		active_placing = false;
 		placed = new List<Transform>();
-		laserBeam.gameObject.SetActive(false);
+		//laserBeam.gameObject.SetActive(false);
 	}
 
 	private bool IsPointerOverUIObject()
@@ -82,16 +82,16 @@ public class MainController : MonoBehaviour
 					{
 
 						Vector3 endPosition = hit.point;
-						Vector3 startPosition = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 80)) + laserBaemOffset;
+						//Vector3 startPosition = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 80)) + laserBaemOffset;
 
 						// place the laserBeam in the center
-						laserBeam.position = (endPosition - startPosition) * 0.5f + startPosition;
+						//laserBeam.position = (endPosition - startPosition) * 0.5f + startPosition;
 						// rotate the laserBeam accordingly
-						laserBeam.rotation = Quaternion.FromToRotation(Vector3.up, (endPosition - startPosition));
+						//laserBeam.rotation = Quaternion.FromToRotation(Vector3.up, (endPosition - startPosition));
 						// Stretch laserBeam
-						laserBeam.localScale = new Vector3(laserBeam.localScale.x, (endPosition - startPosition).magnitude, laserBeam.localScale.z);
+						//laserBeam.localScale = new Vector3(laserBeam.localScale.x, (endPosition - startPosition).magnitude, laserBeam.localScale.z);
 
-						laserBeam.gameObject.SetActive(true);
+						//laserBeam.gameObject.SetActive(true);
 
 						Transform decal_hit = Instantiate(decal, endPosition + (Vector3.up * 0.01f), Quaternion.identity);
 						StartCoroutine(WaitAndDestroy(decal_hit.gameObject, 2f));
@@ -113,13 +113,13 @@ public class MainController : MonoBehaviour
 	IEnumerator WaitAndDestroy(float delay) {
         yield return new WaitForSeconds(delay);
 		//Destroy(go);
-		laserBeam.gameObject.SetActive(false);
+		//laserBeam.gameObject.SetActive(false);
 	}
 	IEnumerator WaitAndDestroy(GameObject go, float delay)
 	{
 		yield return new WaitForSeconds(delay);
 		Destroy(go);
-		laserBeam.gameObject.SetActive(false);
+		//laserBeam.gameObject.SetActive(false);
 	}
 
 }
