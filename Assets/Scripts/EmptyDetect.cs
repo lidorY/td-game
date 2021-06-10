@@ -29,8 +29,6 @@ public class EmptyDetect : MonoBehaviour
             colliders_count = 0;
             collided = false;
 		}
-        print(colliders_count);
-
     }
 
 
@@ -75,12 +73,7 @@ public class EmptyDetect : MonoBehaviour
     {
         if (other.transform.tag != "Ground" && other.transform.tag != "Bullet" & other.transform.tag != "Enemy")
         {
-       
-            
-            
-                colliders_count--;
-            
-            //collided = false;
+           colliders_count--;           
         }
     }
 }

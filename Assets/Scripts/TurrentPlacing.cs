@@ -14,7 +14,6 @@ public class TurrentPlacing : MonoBehaviour
     private bool click = false;
     private float clickTime;
 
-
     public Material enable;
     public Material disable;
     // Start is called before the first frame update
@@ -69,8 +68,6 @@ public class TurrentPlacing : MonoBehaviour
     {
         if (click && Time.time <= (clickTime + clickDelta))
         {
-            print("Double click!");
-
             if (!transform.FindDeepChild("placingpos").GetComponent<EmptyDetect>().collided)
             {
                 Transform p = Instantiate(turrent, pos_place.position, Quaternion.identity);

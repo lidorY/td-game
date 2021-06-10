@@ -83,6 +83,10 @@ public class TurrentControl : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
+        if(targetRef == other.transform)
+		{
+            targetRef = null;
+		}
         targets.Remove(other.transform);
     }
 
@@ -93,8 +97,4 @@ public class TurrentControl : MonoBehaviour
 	}
 
 
-	public void OnMouseDown()
-	{
-        print("Clicked on me!");
-	}
 }
