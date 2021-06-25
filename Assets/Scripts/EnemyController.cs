@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
     // TODO: race condition!!!
     public EmptyDetect curr_collider;
 
+
+    public HealthBar health;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,8 @@ public class EnemyController : MonoBehaviour
         spawnerRef = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         Destination = spawnerRef.AttackSlot();
         agent.SetDestination(Destination);
+
+        health = GameObject.Find("HealthBar").GetComponent<HealthBar>();
     }
 
     
@@ -56,6 +60,9 @@ public class EnemyController : MonoBehaviour
                         transform.rotation = Quaternion.Lerp(transform.rotation, rot, 3 * Time.deltaTime);
                         animator.SetBool("Run Forward", false);
                         animator.SetTrigger("Attack 01");
+                        StartCoroutine(waitAttack());
+
+
                         agent.isStopped = true;
                         reachedDestintaion = true;
 
@@ -110,5 +117,11 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
+
+    IEnumerator waitAttack()
+	{
+        yield return new WaitForSeconds(2);
+        health.SetHealthRelative(0.01f);
+	}
 
 }
