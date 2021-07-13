@@ -27,10 +27,10 @@ public class EnemyController : MonoBehaviour
     {
         reachedDestintaion = false;
         attakTarget = Destination = transform.position;
-        spawnerRef = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
-        Destination = spawnerRef.AttackSlot();
-        attakTarget = GameObject.Find("Castle").transform.position;
-        agent.SetDestination(Destination);
+        //spawnerRef = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        //Destination = spawnerRef.AttackSlot();
+        //attakTarget = GameObject.Find("Castle").transform.position;
+        //agent.SetDestination(Destination);
 
         health = GameObject.Find("HealthBar").GetComponent<HealthBar>();
     }

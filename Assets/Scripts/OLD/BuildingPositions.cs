@@ -8,8 +8,8 @@ public class BuildingPositions : MonoBehaviour
     // Currently assuming the spots are all the same size and constant in number thru the building lifespan
     public float radiusFromTarget;
     public uint positionsNum;
-    public EnemySpawner enemySpawner;
-
+    
+    private EnemySpawner enemySpawner;
     private bool [] positionsAroundTarget;
     private uint nex_pos;
     private uint capacity;
@@ -19,6 +19,7 @@ public class BuildingPositions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        positionsAroundTarget = new bool[positionsNum];
         angleDiff = 360.0f / positionsNum;
         for (int i = 0; i < positionsNum; i++)
         {
@@ -42,6 +43,7 @@ public class BuildingPositions : MonoBehaviour
 		{
 			if (!positionsAroundTarget[i])
 			{
+                positionsAroundTarget[i] = true;
                 float x = radiusFromTarget * Mathf.Sin(angleDiff * i);
                 float y = radiusFromTarget * Mathf.Cos(angleDiff * i);
                 return new Vector3(x, 1, y);
@@ -62,9 +64,10 @@ public class BuildingPositions : MonoBehaviour
         positionsAroundTarget[index] = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void SetParent(EnemySpawner spawner)
+	{
+        // TODO: MAke sure this nly happens once?
+        enemySpawner = spawner;
+	}
+
 }
