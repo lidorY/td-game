@@ -26,29 +26,38 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         reachedDestintaion = false;
-        attakTarget = GameObject.Find("Castle").transform.position;
+        attakTarget = Destination = transform.position;
         spawnerRef = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         Destination = spawnerRef.AttackSlot();
+        attakTarget = GameObject.Find("Castle").transform.position;
         agent.SetDestination(Destination);
 
         health = GameObject.Find("HealthBar").GetComponent<HealthBar>();
     }
 
     
+    public void SetTarget(Vector3 building, Vector3 slot)
+	{
+        attakTarget = building;
+        Destination = slot;
+
+        agent.SetDestination(Destination);
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (!dead)
         {
-            if (!reachedDestintaion)
-            {
-                // Running animation
-                animator.SetBool("Run Forward", true);
-            }
+          //  if (!reachedDestintaion)
+          //  {
+
+          //  }
 
             if (!agent.pathPending)
             {
+                // Running animation
+                animator.SetBool("Run Forward", true);
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
