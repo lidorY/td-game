@@ -1121,6 +1121,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281210269}
   m_CullTransparentMesh: 1
+--- !u!1 &1307726488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 680179242062734617, guid: fcbda83114b6e474abbc852b9e227cc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 837706777473220846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1307726489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5101948891718187126, guid: fcbda83114b6e474abbc852b9e227cc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 837706777473220846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1307726490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307726488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2610dde9509f54c81ed793c7c94e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusFromTarget: 3
+  positionsNum: 5
 --- !u!1 &1439275606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRef: {fileID: 4274285055804658, guid: 84493eaa65d75074ca2c6e2d8a90ff9a, type: 3}
+  buildings:
+  - {fileID: 1307726489}
   attakTarget: {fileID: 5006512735041191711}
   positionsNum: 20
   radiusFromTarget: 2
