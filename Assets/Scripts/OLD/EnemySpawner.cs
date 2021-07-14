@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
 	private float timeCounter;
 
 	Dictionary<EnemyController, (BuildingPositions, uint)> enemies_building_map;
+	Dictionary<BuildingPositions, List<EnemyController>> building_enemies_map;
 	public Vector3 AttackSlot()
 	{
 		return positionsAroundTarget[positionIndex];
@@ -36,6 +37,26 @@ public class EnemySpawner : MonoBehaviour
 	void Start()
 	{
 		enemies_building_map = new Dictionary<EnemyController, (BuildingPositions, uint)>();
+		building_enemies_map = new Dictionary<BuildingPositions, List<EnemyController>>();
+	}
+
+
+	(Transform, Vector3, uint)? FindTarget()
+	{
+		(Vector3, uint)? pos = null;
+		Transform building_ref = null;
+		int i = 0;
+		for (i = 0; i < buildings.Count; i++)
+		{
+			pos = buildings[i].GetComponent<BuildingPositions>().emplace();
+			if (pos != null)
+			{
+				building_ref = buildings[i];
+				return (buildings[i], pos.Value.Item1, pos.Value.Item2);
+			}
+		}
+
+		return null;
 	}
 
 	// Update is called once per frame
@@ -44,19 +65,8 @@ public class EnemySpawner : MonoBehaviour
 		timeCounter += Time.deltaTime;
 		if (timeCounter > timeout)
 		{
-			(Vector3, uint)? pos = null;
-			Transform building_ref = null;
-			int i = 0;
-			for(i = 0; i < buildings.Count; i++)
-			{	
-				pos = buildings[i].GetComponent<BuildingPositions>().emplace();
-				if(pos != null) {
-					building_ref = buildings[i];
-					break; 
-				}
-			}
-			print("choose building " + i);
-			if(pos != null)
+			var target = FindTarget();
+			if (target != null)
 			{
 				float theta = Random.value * (2 * Mathf.PI);
 				float x = spawnDistance * Mathf.Sin(theta);
@@ -66,11 +76,18 @@ public class EnemySpawner : MonoBehaviour
 
 				Transform res = Instantiate(enemyRef, spawn_position, Quaternion.identity);
 				res.GetComponent<EnemyController>().SetTarget(
-					building_ref.position, 
-					pos.Value.Item1,
+					target.Value.Item1.position,
+					target.Value.Item2,
 					this);
 
-				enemies_building_map.Add(res.GetComponent<EnemyController>(), (building_ref.GetComponent<BuildingPositions>(), pos.Value.Item2));
+				if (!building_enemies_map.ContainsKey(target.Value.Item1.GetComponent<BuildingPositions>()))
+				{
+					building_enemies_map[target.Value.Item1.GetComponent<BuildingPositions>()] = new List<EnemyController>();
+				}
+				building_enemies_map[target.Value.Item1.GetComponent<BuildingPositions>()].Add(res.GetComponent<EnemyController>());
+
+				enemies_building_map.Add(res.GetComponent<EnemyController>(), (target.Value.Item1.GetComponent<BuildingPositions>(), target.Value.Item3));
+
 				timeCounter = 0;
 			}
 			// TODO: What happens if theres no place?
@@ -83,8 +100,15 @@ public class EnemySpawner : MonoBehaviour
 		r.Item1.remove(r.Item2);
 	}
 
-	public void RemoveBuilding()
+	public void RemoveBuilding(BuildingPositions buiding)
 	{
+		var enemies = building_enemies_map[buiding];
+
+		foreach(var enemy in enemies)
+		{
+			//var target = FindTarget();
+			//enemy.SetTarget(target.Value.)
+		}
 
 	}
 }
