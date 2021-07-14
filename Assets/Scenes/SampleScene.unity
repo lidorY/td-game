@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radiusFromTarget: 2
-  positionsNum: 10
+  positionsNum: 8
 --- !u!1 &1439275606
 GameObject:
   m_ObjectHideFlags: 0

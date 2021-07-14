@@ -10,6 +10,8 @@ public class TurrentPlacing : MonoBehaviour
     public Transform pos_place;
     public Vector3 pos_offset;
 
+   public EnemySpawner spawnerRef;
+
     public float clickDelta = 0.35f;  // Max between two click to be considered a double click
     private bool click = false;
     private float clickTime;
@@ -19,6 +21,7 @@ public class TurrentPlacing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnerRef = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         prev_coll = true;
 
         // Placing pos position
@@ -76,6 +79,8 @@ public class TurrentPlacing : MonoBehaviour
                     t.FindDeepChild("Radius").gameObject.SetActive(false);
                 }
                 MainController.placed.Add(p);
+                spawnerRef.AddBuilding(p);
+
                 MainController.active_placing = false;
                 Destroy(gameObject);
             }

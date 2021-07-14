@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5047598658755847504}
   - component: {fileID: 5047598658755847505}
   - component: {fileID: 5047598658755847510}
+  - component: {fileID: 3424323418478629216}
   m_Layer: 0
   m_Name: TurrentPrefab
   m_TagString: Placing
@@ -60,6 +61,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 6246673741892258856}
   radius: {fileID: 2355001074886732394}
+--- !u!114 &3424323418478629216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047598658755847511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2610dde9509f54c81ed793c7c94e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusFromTarget: 2
+  positionsNum: 4
 --- !u!114 &8955039775915276887
 MonoBehaviour:
   m_ObjectHideFlags: 0

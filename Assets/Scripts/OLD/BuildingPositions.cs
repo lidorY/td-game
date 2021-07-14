@@ -17,7 +17,7 @@ public class BuildingPositions : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         positionsAroundTarget = new bool[positionsNum];
         angleDiff = (2 * Mathf.PI) / positionsNum;
@@ -44,8 +44,8 @@ public class BuildingPositions : MonoBehaviour
 			if (!positionsAroundTarget[i])
 			{
                 positionsAroundTarget[i] = true;
-                float x = radiusFromTarget * Mathf.Sin(angleDiff * i);
-                float y = radiusFromTarget * Mathf.Cos(angleDiff * i);
+                float x = radiusFromTarget * Mathf.Sin(angleDiff * i) + transform.position.x;
+                float y = radiusFromTarget * Mathf.Cos(angleDiff * i) + transform.position.z;
                 return (new Vector3(x, 1, y), i);
             }
 		}

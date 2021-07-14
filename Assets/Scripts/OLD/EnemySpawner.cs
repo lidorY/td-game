@@ -5,11 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
-
-
-
 	public Transform enemyRef;
-	public Transform [] buildings;
+	public List<Transform> buildings;
 
 
 	public Transform attakTarget;
@@ -30,6 +27,10 @@ public class EnemySpawner : MonoBehaviour
 		return positionsAroundTarget[positionIndex];
 	}
 
+	public void AddBuilding(Transform buildingRef)
+	{
+		buildings.Add(buildingRef);
+	}
 
 	// Start is called before the first frame update
 	void Start()
@@ -43,7 +44,18 @@ public class EnemySpawner : MonoBehaviour
 		timeCounter += Time.deltaTime;
 		if (timeCounter > timeout)
 		{
-			(Vector3, uint)? pos = buildings[0].GetComponent<BuildingPositions>().emplace();
+			(Vector3, uint)? pos = null;
+			Transform building_ref = null;
+			int i = 0;
+			for(i = 0; i < buildings.Count; i++)
+			{	
+				pos = buildings[i].GetComponent<BuildingPositions>().emplace();
+				if(pos != null) {
+					building_ref = buildings[i];
+					break; 
+				}
+			}
+			print("choose building " + i);
 			if(pos != null)
 			{
 				float theta = Random.value * (2 * Mathf.PI);
@@ -54,11 +66,11 @@ public class EnemySpawner : MonoBehaviour
 
 				Transform res = Instantiate(enemyRef, spawn_position, Quaternion.identity);
 				res.GetComponent<EnemyController>().SetTarget(
-					buildings[0].position, 
+					building_ref.position, 
 					pos.Value.Item1,
 					this);
 
-				enemies_building_map.Add(res.GetComponent<EnemyController>(), (buildings[0].GetComponent<BuildingPositions>(), pos.Value.Item2));
+				enemies_building_map.Add(res.GetComponent<EnemyController>(), (building_ref.GetComponent<BuildingPositions>(), pos.Value.Item2));
 				timeCounter = 0;
 			}
 			// TODO: What happens if theres no place?
@@ -71,5 +83,9 @@ public class EnemySpawner : MonoBehaviour
 		r.Item1.remove(r.Item2);
 	}
 
+	public void RemoveBuilding()
+	{
+
+	}
 }
 
