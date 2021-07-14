@@ -12,8 +12,8 @@ public class EnemyController : MonoBehaviour
 
     private EnemySpawner spawnerRef;
     
-    private Vector3 attakTarget;
-    private Vector3 Destination;
+    public Vector3 attakTarget;
+    public Vector3 Destination;
     private bool reachedDestintaion;
     public bool dead;
 
@@ -26,21 +26,15 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         reachedDestintaion = false;
-        attakTarget = Destination = transform.position;
-        //spawnerRef = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
-        //Destination = spawnerRef.AttackSlot();
-        //attakTarget = GameObject.Find("Castle").transform.position;
-        //agent.SetDestination(Destination);
-
         health = GameObject.Find("HealthBar").GetComponent<HealthBar>();
     }
 
     
-    public void SetTarget(Vector3 building, Vector3 slot)
+    public void SetTarget(Vector3 building, Vector3 slot, EnemySpawner creator)
 	{
         attakTarget = building;
         Destination = slot;
-
+        spawnerRef = creator;
         agent.SetDestination(Destination);
     }
 
@@ -49,11 +43,6 @@ public class EnemyController : MonoBehaviour
     {
         if (!dead)
         {
-          //  if (!reachedDestintaion)
-          //  {
-
-          //  }
-
             if (!agent.pathPending)
             {
                 // Running animation
@@ -109,6 +98,7 @@ public class EnemyController : MonoBehaviour
 
 	private void Die()
 	{
+        spawnerRef.RemoveEnemy(this);
         Destroy(transform.GetComponent<BoxCollider>());
         if (curr_collider != null) curr_collider.colliders_count--;
 

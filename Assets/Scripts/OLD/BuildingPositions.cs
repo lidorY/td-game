@@ -20,7 +20,7 @@ public class BuildingPositions : MonoBehaviour
     void Start()
     {
         positionsAroundTarget = new bool[positionsNum];
-        angleDiff = 360.0f / positionsNum;
+        angleDiff = (2 * Mathf.PI) / positionsNum;
         for (int i = 0; i < positionsNum; i++)
         {
             positionsAroundTarget[i] = false;
@@ -29,7 +29,7 @@ public class BuildingPositions : MonoBehaviour
         capacity = 0;
     }
 
-    public Vector3? emplace()
+    public (Vector3, uint index)? emplace()
 	{
         // Suppose to be faster in this order 
         if(capacity >= positionsNum)
@@ -39,14 +39,14 @@ public class BuildingPositions : MonoBehaviour
         capacity++;
 
         //Search for the next open spot
-        for(int i = 0; i < positionsNum; i++)
+        for(uint i = 0; i < positionsNum; i++)
 		{
 			if (!positionsAroundTarget[i])
 			{
                 positionsAroundTarget[i] = true;
                 float x = radiusFromTarget * Mathf.Sin(angleDiff * i);
                 float y = radiusFromTarget * Mathf.Cos(angleDiff * i);
-                return new Vector3(x, 1, y);
+                return (new Vector3(x, 1, y), i);
             }
 		}
 
@@ -54,7 +54,7 @@ public class BuildingPositions : MonoBehaviour
         throw new IndexOutOfRangeException("Building is full and the capacity was not updated correctly");
     }
 
-    void remove(uint index)
+    public void remove(uint index)
 	{
         if (!positionsAroundTarget[index])
 		{

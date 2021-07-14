@@ -1145,8 +1145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2610dde9509f54c81ed793c7c94e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusFromTarget: 3
-  positionsNum: 5
+  radiusFromTarget: 2
+  positionsNum: 10
 --- !u!1 &1439275606
 GameObject:
   m_ObjectHideFlags: 0
