@@ -1140,7 +1140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radiusFromTarget: 2
-  positionsNum: 8
+  positionsNum: 1
+  positionsAroundTarget: 
+  capacity: 0
+  angleDiff: 0
   building_id: 0
 --- !u!1 &1439275606
 GameObject:
