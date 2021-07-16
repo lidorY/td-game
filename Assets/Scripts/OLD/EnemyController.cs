@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     private bool reachedDestintaion;
     public bool dead;
 
+    public bool target_less;
+
     // TODO: race condition!!!
     public EmptyDetect curr_collider;
 
@@ -27,6 +29,7 @@ public class EnemyController : MonoBehaviour
     {
         reachedDestintaion = false;
         health = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+        target_less = false;
     }
 
     
@@ -35,14 +38,27 @@ public class EnemyController : MonoBehaviour
         attakTarget = building;
         Destination = slot;
         spawnerRef = creator;
-        agent.SetDestination(Destination);
+
+        if (agent != null)
+        {
+            //TODO: Race condition when erasing while setting target?
+            agent.SetDestination(Destination);
+        }
+        target_less = false;
     }
+
+
+
 
     // Update is called once per frame
     void Update()
     {
         if (!dead)
         {
+        //    if (target_less)
+        //    {
+        //        StartCoroutine(circle());
+        //    }
             if (!agent.pathPending)
             {
                 // Running animation
@@ -68,13 +84,27 @@ public class EnemyController : MonoBehaviour
 
                     }
                 }
+                
             }
         }
 
     }
 
+    //IEnumerator circle()
+    //{
+    //    animator.SetBool("Run Forward", true);
+    //    agent.isStopped = false;
+    //    reachedDestintaion = false;
+    //    attakTarget += Vector3.one * 300;
+    //    Destination += Vector3.one * 300;
+    //    agent.SetDestination(Destination);
+    //    yield return new WaitForSeconds(3);
+    //    attakTarget += Vector3.one * -300;
+    //    Destination += Vector3.one * -300;
+    //    agent.SetDestination(Destination);
+    //}
 
-	private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
 	{
         if (!dead)
         {

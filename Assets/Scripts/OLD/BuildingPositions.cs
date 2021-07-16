@@ -10,9 +10,11 @@ public class BuildingPositions : MonoBehaviour
     public uint positionsNum;
     
     private EnemySpawner enemySpawner;
+    [SerializeField]
     private bool [] positionsAroundTarget;
-    private uint nex_pos;
+    [SerializeField]
     private uint capacity;
+    [SerializeField]
     private float angleDiff;
 
     public uint building_id;
@@ -26,7 +28,6 @@ public class BuildingPositions : MonoBehaviour
         {
             positionsAroundTarget[i] = false;
         }
-        nex_pos = 0;
         capacity = 0;
         building_id = 0;
     }
@@ -78,7 +79,11 @@ public class BuildingPositions : MonoBehaviour
 	private void OnDestroy()
 	{
         print("destrotes");
-        enemySpawner.RemoveBuilding(building_id);
+        if (enemySpawner != null)
+        {
+            // TODO: on game exit this gets to be null
+            enemySpawner.RemoveBuilding(building_id);
+        }
     }
 
 }

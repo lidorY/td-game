@@ -31,10 +31,13 @@ public class EnemySpawner : MonoBehaviour
 	Dictionary<uint, List<EnemyController>> building_enemies_map;
 
 	// Enemies with current unassigned target
+	[SerializeField]
 	Queue<EnemyController> waiting_list_;
 
 	// Removal event - used in order to avoid race conditions
+	[SerializeField]
 	Queue<EnemyController> remove_enemy_events;
+	[SerializeField]
 	Queue<uint> remove_building_events;
 
 
@@ -201,6 +204,7 @@ public class EnemySpawner : MonoBehaviour
 				{
 					waiting_list_.Enqueue(enemy);
 					enemies_building_map.Remove(enemy);
+					enemy.target_less = true;
 				}
 			}
 		}
