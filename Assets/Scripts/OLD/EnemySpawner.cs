@@ -174,18 +174,6 @@ public class EnemySpawner : MonoBehaviour
 		uint pos;
 		(building_id, pos) = enemies_building_map[caller];
 		buildings[building_id].remove(pos);
-
-		//if (waiting_list_.Count > 0)
-		//{
-		//	var enemy = waiting_list_.Dequeue();
-
-		//	var new_emplaced_pos = building.emplace();
-		//	// TODO: check we succeded placing?
-		//	building_enemies_map[building].Add(enemy);
-		//	enemies_building_map.Add(enemy, (building, new_emplaced_pos.Value.Item2));
-
-		//	timeCounter = 0;
-		//}
 	}
 
 	private void HandleRemoveBuilding(uint building_id)
