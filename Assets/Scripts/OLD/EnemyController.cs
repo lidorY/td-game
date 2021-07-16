@@ -47,6 +47,8 @@ public class EnemyController : MonoBehaviour
             {
                 // Running animation
                 animator.SetBool("Run Forward", true);
+                agent.isStopped = false;
+                reachedDestintaion = false;
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)

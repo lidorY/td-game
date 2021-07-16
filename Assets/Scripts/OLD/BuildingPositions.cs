@@ -15,6 +15,7 @@ public class BuildingPositions : MonoBehaviour
     private uint capacity;
     private float angleDiff;
 
+    public uint building_id;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,16 +28,18 @@ public class BuildingPositions : MonoBehaviour
         }
         nex_pos = 0;
         capacity = 0;
+        building_id = 0;
     }
+
+    public void SetId(uint id) { building_id = id; }
 
     public (Vector3, uint index)? emplace()
 	{
         // Suppose to be faster in this order 
         if(capacity >= positionsNum)
 		{
-            return null;
+           return null;
 		}
-        capacity++;
 
         //Search for the next open spot
         for(uint i = 0; i < positionsNum; i++)
@@ -46,12 +49,14 @@ public class BuildingPositions : MonoBehaviour
                 positionsAroundTarget[i] = true;
                 float x = radiusFromTarget * Mathf.Sin(angleDiff * i) + transform.position.x;
                 float y = radiusFromTarget * Mathf.Cos(angleDiff * i) + transform.position.z;
+                capacity++;
                 return (new Vector3(x, 1, y), i);
             }
 		}
 
         // Should never happen
         throw new IndexOutOfRangeException("Building is full and the capacity was not updated correctly");
+        //return null;
     }
 
     public void remove(uint index)
@@ -64,10 +69,16 @@ public class BuildingPositions : MonoBehaviour
         positionsAroundTarget[index] = false;
     }
 
-    void SetParent(EnemySpawner spawner)
+    public void SetParent(EnemySpawner spawner)
 	{
         // TODO: MAke sure this nly happens once?
         enemySpawner = spawner;
 	}
+
+	private void OnDestroy()
+	{
+        print("destrotes");
+        enemySpawner.RemoveBuilding(building_id);
+    }
 
 }

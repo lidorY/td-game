@@ -18,6 +18,9 @@ public class TurrentPlacing : MonoBehaviour
 
     public Material enable;
     public Material disable;
+
+
+    public static uint rolling_id = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +82,10 @@ public class TurrentPlacing : MonoBehaviour
                     t.FindDeepChild("Radius").gameObject.SetActive(false);
                 }
                 MainController.placed.Add(p);
-                spawnerRef.AddBuilding(p);
+                p.GetComponent<BuildingPositions>().SetId(rolling_id);
+                spawnerRef.AddBuilding(rolling_id, p.GetComponent<BuildingPositions>());
+                p.GetComponent<BuildingPositions>().SetParent(GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>());
+                rolling_id++;
 
                 MainController.active_placing = false;
                 Destroy(gameObject);
