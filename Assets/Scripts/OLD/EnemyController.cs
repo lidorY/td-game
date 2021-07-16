@@ -47,7 +47,21 @@ public class EnemyController : MonoBehaviour
         target_less = false;
     }
 
+    public bool positive;
+    public void SendFar()
+	{
+        int amount = positive ? 300 : -300;
+        positive = !positive;
+        attakTarget = new Vector3(0, 0, 0);
+        Destination = new Vector3(0, 0, 0);
 
+        if (agent != null)
+        {
+            //TODO: Race condition when erasing while setting target?
+            agent.SetDestination(Destination);
+        }
+        target_less = false;
+    }
 
 
     // Update is called once per frame

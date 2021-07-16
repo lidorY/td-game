@@ -155,6 +155,10 @@ public class EnemySpawner : MonoBehaviour
 
 				timeCounter = 0;
 			}
+			foreach(var e in waiting_list_)
+			{
+				e.SendFar();
+			}
 			// TODO: What happens if theres no place?
 		}
 
