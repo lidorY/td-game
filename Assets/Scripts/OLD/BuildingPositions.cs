@@ -78,7 +78,6 @@ public class BuildingPositions : MonoBehaviour
 
 	private void OnDestroy()
 	{
-        print("destrotes");
         if (enemySpawner != null)
         {
             // TODO: on game exit this gets to be null
