@@ -61,21 +61,32 @@ public class MainController : MonoBehaviour
 			{
 				Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 				RaycastHit[] hits = Physics.RaycastAll(ray);
-				
+
 				// TODO: Check for a minimal distance from the previous hit to the ground(?)
 				// Disable the option to shoot lightning all the way thru buildings..
-				foreach(var hit in hits)
+				bool is_placing = false;
+				foreach (var hit in hits)
 				{
-					if(hit.transform.tag == "Ground")
+					if (hit.transform.tag == "Placing")
+						is_placing = true;
+				}
+
+				if (!is_placing)
+				{
+					foreach (var hit in hits)
 					{
+						// placing is always on top of the screen height..
 
-						Vector3 endPosition = hit.point;
+						if (hit.transform.tag == "Ground")
+						{
+							Vector3 endPosition = hit.point;
 
-						Transform decal_hit = Instantiate(decal, endPosition + (Vector3.up * 0.01f), Quaternion.identity);
-						StartCoroutine(WaitAndDestroy(decal_hit.gameObject, 2f));
+							Transform decal_hit = Instantiate(decal, endPosition + (Vector3.up * 0.01f), Quaternion.identity);
+							StartCoroutine(WaitAndDestroy(decal_hit.gameObject, 2f));
 
-						StartCoroutine(WaitAndDestroy(0.1f));
-						break;
+							StartCoroutine(WaitAndDestroy(0.1f));
+							break;
+						}
 					}
 				}
 			}	
