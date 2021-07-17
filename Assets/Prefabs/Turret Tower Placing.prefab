@@ -126,7 +126,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5649445840961903297
 MonoBehaviour:
@@ -276,6 +276,7 @@ MonoBehaviour:
   turrent: {fileID: 5047598658755847504, guid: 48cc6c54cd0e8c14bab3147ff5609f87, type: 3}
   pos_place: {fileID: 2194934242250496543}
   pos_offset: {x: 3.9, y: -5, z: 3.09}
+  spawnerRef: {fileID: 0}
   clickDelta: 0.35
   enable: {fileID: 2100000, guid: 110fa63d37a7d3c47845676aad1dc018, type: 2}
   disable: {fileID: 2100000, guid: 39a2f66b8196f27499f0b47e60aded1b, type: 2}
