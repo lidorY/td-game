@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliders_count: 0
-  enemy_detection_radius: 2
+  enemy_detection_radius: 0
   collided: 0
 --- !u!1 &6245384907050436063
 GameObject:
@@ -280,6 +280,8 @@ MonoBehaviour:
   clickDelta: 0.35
   enable: {fileID: 2100000, guid: 110fa63d37a7d3c47845676aad1dc018, type: 2}
   disable: {fileID: 2100000, guid: 39a2f66b8196f27499f0b47e60aded1b, type: 2}
+  add_button: {fileID: 0}
+  del_button: {fileID: 0}
 --- !u!65 &9128773760262879950
 BoxCollider:
   m_ObjectHideFlags: 0
