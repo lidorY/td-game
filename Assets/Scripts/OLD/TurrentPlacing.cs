@@ -84,7 +84,14 @@ public class TurrentPlacing : MonoBehaviour
                 Transform p = Instantiate(turrent, pos_place.position, Quaternion.identity);
                 foreach(Transform t in MainController.placed)
 				{
-                    t.FindDeepChild("Radius").gameObject.SetActive(false);
+                    try
+                    {
+                        t.FindDeepChild("Radius").gameObject.SetActive(false);
+                    }
+                    catch(System.Exception ex)
+					{
+                        Debug.LogError("ERROR, failed finding an erased turrent.. " + ex.Message);
+					}
                 }
                 MainController.placed.Add(p);
                 p.GetComponent<BuildingPositions>().SetId(rolling_id);
