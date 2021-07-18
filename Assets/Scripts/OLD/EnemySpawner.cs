@@ -23,6 +23,8 @@ public class EnemySpawner : MonoBehaviour
 	//public List<BuildingPositions> buildings;
 	// building_id, buiding_reference
 	public Dictionary<uint, BuildingPositions> buildings;
+
+
 	// Map the buiding and index in bulding position to a specific enemy
 	// enemy_ref, building id(from the buildings dict) and the placing index 
 	Dictionary<EnemyController, (uint, uint)> enemies_building_map;
@@ -57,7 +59,6 @@ public class EnemySpawner : MonoBehaviour
 		enemies_building_map = new Dictionary<EnemyController, (uint, uint)>();
 		building_enemies_map = new Dictionary<uint, List<EnemyController>>();
 		waiting_list_ = new Queue<EnemyController>();
-		//buildings = new List<BuildingPositions>();
 
 		remove_enemy_events = new Queue<EnemyController>();
 		remove_building_events = new Queue<uint>();
@@ -70,20 +71,38 @@ public class EnemySpawner : MonoBehaviour
 	{
 		(Vector3, uint)? pos = null;
 		int i = 0;
+
+		KeyValuePair<uint, BuildingPositions>? chosenPair = null;
+
 		foreach (var b in buildings)
 		{
 			// TODO: this is a temporary only fix..
 			if (b.Value != null)
 			{
-				pos = b.Value.emplace();
-				if (pos != null)
+				if (!chosenPair.HasValue)
 				{
-					return (b.Key, pos.Value.Item1, pos.Value.Item2);
+					chosenPair = b;
+				}
+				else if (b.Key > chosenPair.Value.Key)
+				{
+					chosenPair = b;
 				}
 			}
 		}
 
-		return null;
+		if (chosenPair == null) { return null; }
+		else
+		{
+			var index = chosenPair.Value.Key;
+			var building = chosenPair.Value.Value;
+
+			pos = building.emplace();
+			if (pos != null)
+			{
+				return (index, pos.Value.Item1, pos.Value.Item2);
+			}
+			return null;
+		}
 	}
 
 

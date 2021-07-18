@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 5921972346510693505}
   parent: {fileID: 5047598658755847511}
+  max_health: 20
 --- !u!1 &4132698783262654675
 GameObject:
   m_ObjectHideFlags: 0

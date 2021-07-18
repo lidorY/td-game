@@ -18,7 +18,9 @@ public class MainController : MonoBehaviour
 	public GameObject add_button;
 	public GameObject del_button;
 
-
+	public HealthBar mana;
+	public float mana_per_attack;
+	public float mana_grow_rate;
 	// Start is called before the first frame update
 
 	public Material initMaterial;
@@ -73,41 +75,47 @@ public class MainController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+		mana.SetHealthRelative(-mana_grow_rate * Time.deltaTime);
 		// Check if there is a touch
 		if (Input.GetMouseButtonDown(0))
 		{
 			// Check if finger is over a UI element
 			if (!IsPointerOverUIObject())
 			{
-				Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-				RaycastHit[] hits = Physics.RaycastAll(ray);
-
-				// TODO: Check for a minimal distance from the previous hit to the ground(?)
-				// Disable the option to shoot lightning all the way thru buildings..
-				bool is_placing = false;
-				foreach (var hit in hits)
+				if (mana.GetHealth() >= mana_per_attack)
 				{
-					if (hit.transform.tag == "Placing")
-						is_placing = true;
-				}
+					Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+					RaycastHit[] hits = Physics.RaycastAll(ray);
 
-				if (!is_placing)
-				{
+					// TODO: Check for a minimal distance from the previous hit to the ground(?)
+					// Disable the option to shoot lightning all the way thru buildings..
+					bool is_placing = false;
 					foreach (var hit in hits)
 					{
-						// placing is always on top of the screen height..
+						if (hit.transform.tag == "Placing")
+							is_placing = true;
+					}
 
-						if (hit.transform.tag == "Ground")
+					if (!is_placing)
+					{
+						foreach (var hit in hits)
 						{
-							Vector3 endPosition = hit.point;
+							// placing is always on top of the screen height..
 
-							Transform decal_hit = Instantiate(decal, endPosition + (Vector3.up * 0.01f), Quaternion.identity);
-							StartCoroutine(WaitAndDestroy(decal_hit.gameObject, 2f));
+							if (hit.transform.tag == "Ground")
+							{
+								Vector3 endPosition = hit.point;
 
-							StartCoroutine(WaitAndDestroy(0.1f));
-							break;
+								Transform decal_hit = Instantiate(decal, endPosition + (Vector3.up * 0.01f), Quaternion.identity);
+								StartCoroutine(WaitAndDestroy(decal_hit.gameObject, 2f));
+
+								StartCoroutine(WaitAndDestroy(0.1f));
+								mana.SetHealthRelative(mana_per_attack);
+								break;
+							}
 						}
 					}
+
 				}
 			}	
 		}

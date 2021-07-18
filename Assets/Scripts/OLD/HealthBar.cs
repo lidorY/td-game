@@ -9,10 +9,11 @@ public class HealthBar : MonoBehaviour
 
     public Slider slider;
 	public GameObject parent;
+	public float max_health;
 
 	private void Start()
 	{
-		SetMaxHealth(100);
+		SetMaxHealth(max_health);
 	}
 	public float GetHealth()
 	{
@@ -31,7 +32,7 @@ public class HealthBar : MonoBehaviour
 		SetHealth(slider.value - health);
 	}
 
-	public void SetMaxHealth(int health)
+	public void SetMaxHealth(float health)
 	{
 		slider.maxValue = health;
 		slider.value = health;
