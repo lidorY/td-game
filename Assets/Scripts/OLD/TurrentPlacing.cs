@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TurrentPlacing : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class TurrentPlacing : MonoBehaviour
     public Material enable;
     public Material disable;
 
+    public GameObject add_button;
+    public GameObject del_button;
 
     public static uint rolling_id = 1;
     // Start is called before the first frame update
@@ -39,6 +42,8 @@ public class TurrentPlacing : MonoBehaviour
 
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -46,7 +51,7 @@ public class TurrentPlacing : MonoBehaviour
         {
             click = false;
         }
-            if (transform.FindDeepChild("placingpos").GetComponent<EmptyDetect>().collided != prev_coll)
+        if (transform.FindDeepChild("placingpos").GetComponent<EmptyDetect>().collided != prev_coll)
         {
             prev_coll = transform.FindDeepChild("placingpos").GetComponent<EmptyDetect>().collided;
             if (prev_coll)
@@ -89,9 +94,9 @@ public class TurrentPlacing : MonoBehaviour
 
                 MainController.active_placing = false;
                 Destroy(gameObject);
+                add_button.SetActive(true);
+                del_button.SetActive(false);
             }
-
-            
         }
         else
         {

@@ -28,16 +28,17 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         reachedDestintaion = false;
-        health = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+        //health = GameObject.Find("HealthBar").GetComponent<HealthBar>();
         target_less = false;
     }
 
     
-    public void SetTarget(Vector3 building, Vector3 slot, EnemySpawner creator)
+    public void SetTarget(Vector3 building, Vector3 slot, EnemySpawner creator, HealthBar target_health)
 	{
         attakTarget = building;
         Destination = slot;
         spawnerRef = creator;
+        health = target_health;
 
         if (agent != null)
         {
@@ -69,10 +70,7 @@ public class EnemyController : MonoBehaviour
     {
         if (!dead)
         {
-        //    if (target_less)
-        //    {
-        //        StartCoroutine(circle());
-        //    }
+
             if (!agent.pathPending)
             {
                 // Running animation
@@ -103,20 +101,6 @@ public class EnemyController : MonoBehaviour
         }
 
     }
-
-    //IEnumerator circle()
-    //{
-    //    animator.SetBool("Run Forward", true);
-    //    agent.isStopped = false;
-    //    reachedDestintaion = false;
-    //    attakTarget += Vector3.one * 300;
-    //    Destination += Vector3.one * 300;
-    //    agent.SetDestination(Destination);
-    //    yield return new WaitForSeconds(3);
-    //    attakTarget += Vector3.one * -300;
-    //    Destination += Vector3.one * -300;
-    //    agent.SetDestination(Destination);
-    //}
 
     private void OnCollisionEnter(Collision collision)
 	{

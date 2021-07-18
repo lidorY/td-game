@@ -14,6 +14,10 @@ public class MainController : MonoBehaviour
 	public static List<Transform> placed;
 	public static bool active_placing = false;
 
+	GameObject Curr_placing;
+	public GameObject add_button;
+	public GameObject del_button;
+
 
 	// Start is called before the first frame update
 
@@ -23,6 +27,8 @@ public class MainController : MonoBehaviour
 		if (!active_placing)
 		{
 			active_placing = true;
+			placed.RemoveAll(o => o == null);
+
 			foreach (Transform g in placed)
 			{
 				g.FindDeepChild("Radius").gameObject.SetActive(true);
@@ -31,8 +37,22 @@ public class MainController : MonoBehaviour
 			Utils.SetLayerRecursively(tur.gameObject, 6);
 			tur.FindDeepChild("Turret").GetComponent<Renderer>().material = initMaterial;
 			tur.FindDeepChild("Tower").GetComponent<Renderer>().material = initMaterial;
+
+			Curr_placing = tur.gameObject;
+			tur.GetComponent<TurrentPlacing>().add_button = add_button;
+			tur.GetComponent<TurrentPlacing>().del_button = del_button;
+			add_button.SetActive(false);
+			del_button.SetActive(true);
 		}
 		
+	}
+
+	public void DisablePlacing()
+	{
+		Destroy(Curr_placing);
+		active_placing = false;
+		add_button.SetActive(true);
+		del_button.SetActive(false);
 	}
 
 	void Start()

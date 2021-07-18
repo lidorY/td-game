@@ -223,9 +223,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3496003362667851627}
   animator: {fileID: 95782878299265946}
+  attakTarget: {x: 0, y: 0, z: 0}
+  Destination: {x: 0, y: 0, z: 0}
   dead: 0
+  target_less: 0
   curr_collider: {fileID: 0}
   health: {fileID: 0}
+  positive: 0
 --- !u!65 &2618264881308160142
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class HealthBar : MonoBehaviour
 {
 
     public Slider slider;
+	public GameObject parent;
+
 	private void Start()
 	{
 		SetMaxHealth(100);
@@ -16,13 +18,17 @@ public class HealthBar : MonoBehaviour
 	{
 		return slider.value;
 	}
-    public void SetHealth(int health)
+    public void SetHealth(float health)
 	{
 		slider.value = health;
+		if (health <= 0)
+		{
+			if (parent != null) { Destroy(parent); }
+		}
 	}
 	public void SetHealthRelative(float health)
 	{
-		slider.value -= health;
+		SetHealth(slider.value - health);
 	}
 
 	public void SetMaxHealth(int health)

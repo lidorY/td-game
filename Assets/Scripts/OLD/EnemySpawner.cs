@@ -141,7 +141,8 @@ public class EnemySpawner : MonoBehaviour
 				enemy_res.SetTarget(
 						buildings[target_building_id].transform.position,
 						target__slot_pos,
-						this);
+						this,
+						buildings[target_building_id].transform.FindDeepChild("HealthBar").GetComponent<HealthBar>());
 
 				// Update the tracing "databases"
 				if (!building_enemies_map.ContainsKey(target_building_id)){
@@ -174,10 +175,16 @@ public class EnemySpawner : MonoBehaviour
 	}
 	private void HandleRemoveEnemy(EnemyController caller)
 	{
-		uint building_id;
-		uint pos;
-		(building_id, pos) = enemies_building_map[caller];
-		buildings[building_id].remove(pos);
+		try
+		{
+			uint building_id = 0;
+			uint pos = 0;
+			(building_id, pos) = enemies_building_map[caller];
+			buildings[building_id].remove(pos);
+		}
+		catch (System.Exception ex){
+			print("Failed removing enemy: " + ex.Message);
+		}
 	}
 
 	private void HandleRemoveBuilding(uint building_id)

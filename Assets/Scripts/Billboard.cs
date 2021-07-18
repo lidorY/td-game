@@ -6,7 +6,7 @@ public class Billboard : MonoBehaviour
 {
     public Transform cam;
 
-    void start()
+    void Start()
 	{
 		if (cam == null)
 		{
